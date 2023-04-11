@@ -20,6 +20,7 @@ class PyGffutils(PythonPackage):
 
     maintainers = ["dorton21"]
 
+    version("0.11.1", sha256="ca7bf814d600b389bb2d5c403dd279755118cb1476c19c6f7aecb8c51a84263c")
     version("0.10.1", sha256="a8fc39006d7aa353147238160640e2210b168f7849cb99896be3fc9441e351cb")
 
     depends_on("py-setuptools", type="build")
