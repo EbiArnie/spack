@@ -10,11 +10,21 @@ class PerlStatisticsDescriptive(PerlPackage):
     """Module of basic descriptive statistical functions."""
 
     homepage = "https://metacpan.org/pod/Statistics::Descriptive"
-    url = (
-        "http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMIF/Statistics-Descriptive-3.0612.tar.gz"
-    )
+    url = "https://cpan.metacpan.org/authors/id/S/SH/SHLOMIF/Statistics-Descriptive-3.0801.tar.gz"
 
-    license("GPL-1.0-or-later OR Artistic-1.0-Perl")
+    maintainers("EbiArnie")
 
-    version("3.0800", sha256="b04edeea26bfed435aa6029956798c281f7f52d4545f3f45b2ad44954e96f939")
-    version("3.0612", sha256="772413148e5e00efb32f277c4254aa78b9112490a896208dcd0025813afdbf7a")
+    license("Artistic-1.0-Perl OR GPL-1.0-or-later")
+
+    version("3.0801", sha256="047b70a63fdcaa916168e0ff2d58e155e0ebbc68ed4ccbd73a7213dca3028f65")
+
+    depends_on("perl@5.6.0:", type=("build", "link", "run", "test"))
+    depends_on("perl-list-moreutils", type=("build", "run", "test"))
+
+    def test_use(self):
+        """Test 'use module'"""
+        options = ["-we", 'use strict; use Statistics::Descriptive; print("OK\n")']
+
+        perl = self.spec["perl"].command
+        out = perl(*options, output=str.split, error=str.split)
+        assert "OK" in out
